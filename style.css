@@ -1,0 +1,365 @@
+:root {
+    /* Deklarasi Variabel */
+    --bg-dark: #0f172a;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-highlight: rgba(255, 255, 255, 0.2);
+    --primary: #3b82f6;
+    --accent-v: #06b6d4; /* Warna Vertikal */
+    --accent-h: #8b5cf6; /* Warna Horizontal */
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --shadow-glow: 0 0 20px rgba(59, 130, 246, 0.3);
+}
+
+/* Reset Sederhana */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    /* Properti dasar: Penyingkatan padding */
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    min-height: 100vh;
+    padding: 2rem 1rem;
+
+    /* Background Image Dibiarkan apa adanya (unik) */
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(6, 182, 212, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 40%);
+    
+    /* Layout: Flexbox */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+}
+
+/* --- Header & Kontrol Utama --- */
+
+header {
+    text-align: center;
+    /* Shorthand margin */
+    margin-bottom: 2rem; 
+    animation: fadeInDown 1s ease-out;
+}
+
+h1 {
+    /* Penulisan font-size dan weight dibalik (kebiasaan developer) */
+    font-weight: 700;
+    font-size: 2.5rem;
+    letter-spacing: -1px;
+    margin-bottom: 0.5rem;
+    
+    /* Gradient */
+    background: linear-gradient(to right, var(--accent-v), var(--accent-h));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+/* Menggabungkan selector yang sama */
+p.subtitle, .error-msg {
+    color: var(--text-muted);
+    font-size: 1rem;
+}
+
+.controls {
+    /* Penggunaan shorthand untuk box-shadow */
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    
+    /* Box Shadow yang kompleks */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    
+    /* Penempatan filter di bawah box-shadow (sedikit tidak teratur) */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    
+    /* Layout dan Spacing */
+    padding: 2rem;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 500px;
+    
+    /* Transisi & Posisi */
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.controls:hover {
+    border-color: var(--glass-highlight);
+    box-shadow: var(--shadow-glow);
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+label {
+    /* Penggunaan font-weight di atas font-size */
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.input-wrapper {
+    display: flex;
+    gap: 1rem;
+}
+
+input[type="number"] {
+    /* Penulisan warna transparan yang lebih umum */
+    background: rgba(0,0,0,.3); 
+    border: 1px solid var(--glass-border);
+    color: white;
+    
+    /* Shorthand padding */
+    padding: .8rem 1rem; 
+    border-radius: 10px;
+    font-size: 1.1rem;
+    width: 100%;
+    transition: all 0.3s;
+}
+
+input[type="number"]:focus {
+    outline: none;
+    border-color: var(--primary);
+    /* Shorthand untuk box-shadow 0 0 */
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2); 
+}
+
+.btn-group {
+    display: flex;
+    gap: 1rem;
+}
+
+button {
+    /* Shorthand border/outline/padding */
+    flex: 1;
+    padding: .8rem;
+    border: none;
+    
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-generate {
+    background: linear-gradient(135deg, var(--primary), var(--accent-h));
+    color: white;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+}
+
+.btn-generate:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
+}
+
+.btn-reset {
+    /* Warna rgba disingkat menjadi hanya satu digit untuk alpha */
+    background: rgba(255, 255, 255, .1); 
+    color: var(--text-main);
+    border: 1px solid var(--glass-border);
+}
+
+.btn-reset:hover {
+    background: rgba(255, 255, 255, .2);
+}
+
+.stats-panel {
+    text-align: center;
+    margin-bottom: 2rem;
+    height: 2rem; 
+}
+
+.stat-text {
+    font-size: 1.2rem;
+    color: var(--text-main);
+    
+    /* Pengelompokan properti transform */
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.5s ease;
+}
+
+.stat-text.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.logic-tooltip {
+    /* Shorthand padding dan penulisan warna transparan */
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    background: rgba(0,0,0,.2);
+    padding: .5rem 1rem;
+    
+    border-radius: 20px;
+    display: inline-block;
+}
+
+.results-container {
+    /* Grouping Grid Properties */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    
+    width: 100%;
+    max-width: 1200px;
+    padding-bottom: 4rem;
+}
+
+.card {
+    /* Properti disusun berdasarkan jenis: Background, Border, Layout, Animasi */
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    opacity: 0;
+    animation: slideUp 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-v);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.card-label {
+    margin-bottom: 1rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.tiling-grid {
+    /* Shorthand untuk scrollbar */
+    display: flex; 
+    gap: 2px;
+    padding: 4px;
+    background: rgba(0,0,0,.2);
+    border-radius: 8px;
+    overflow-x: auto; 
+    max-width: 100%;
+    
+    scrollbar-width: thin;
+    scrollbar-color: var(--glass-border) transparent;
+}
+
+.tile-group {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.tile {
+    /* Pengelompokan properti Visual/Layout */
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: rgba(255,255,255,.7);
+    box-shadow: inset 0 0 10px rgba(0,0,0,.2);
+}
+
+.tile-v {
+    width: 40px;
+    /* Penulisan komentar yang lebih rapih */
+    height: 82px; /* 40*2 + gap 2 */ 
+    background: linear-gradient(180deg, var(--accent-v), #0891b2);
+    border: 1px solid rgba(255,255,255,.3);
+}
+
+
+.tile-h-group {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    width: 82px; 
+}
+
+.tile-h {
+    width: 100%;
+    height: 40px;
+    background: linear-gradient(90deg, var(--accent-h), #7c3aed);
+    border: 1px solid rgba(255,255,255,.3);
+}
+
+.tile::after {
+    content: '';
+    position: absolute;
+    /* Shorthand top/left/right/bottom */
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    bottom: 0;
+    
+    background: linear-gradient(135deg, rgba(255,255,255,.4) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+/* --- Keyframes --- */
+
+@keyframes fadeInDown {
+    /* Penulisan properti transform di depan opacity */
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.error-msg {
+    color: #ef4444;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    display: none;
+    animation: shake 0.4s ease-in-out;
+}
+
+@keyframes shake {
+    /* Shorthand untuk 0% dan 100% */
+    0%, 100% { transform: translateX(0); } 
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+/* --- Media Queries (Responsif) --- */
+
+@media (max-width: 600px) {
+    h1 { font-size: 1.8rem; }
+    .controls { padding: 1.5rem; }
+    /* Menghilangkan input-wrapper karena sudah tidak spesifik */
+    .input-wrapper { flex-direction: column; } 
+    .tile-v { width: 30px; height: 62px; }
+    .tile-h-group { width: 62px; }
+    .tile-h { height: 30px; }
+}

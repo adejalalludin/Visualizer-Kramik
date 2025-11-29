@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualisasi Keramik 2xN | Fibonacci</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Visualizer Keramik</h1>
+        <p class="subtitle">Penempatan Keramik 2x1 pada Ruang 2xN</p>
+    </header>
+
+    <main class="controls">
+        <div class="input-group">
+            <label for="widthN">Lebar Ruangan (N)</label>
+            <div class="input-wrapper">
+                <input type="number" id="widthN" min="1" max="10" placeholder="Contoh: 4" value="4">
+            </div>
+            <div id="errorMsg" class="error-msg">Mohon masukkan angka antara 1 sampai 10.</div>
+        </div>
+
+        <div class="btn-group">
+            <button class="btn-reset" onclick="resetApp()">Reset</button>
+            <button class="btn-generate" onclick="generateCombinations()">Generate</button>
+        </div>
+
+        <div style="text-align: center;">
+            <span class="logic-tooltip">
+                <strong style="color:var(--accent-v)">|</strong> Vertikal (1x2) &nbsp; 
+                <strong style="color:var(--accent-h)">=</strong> Horizontal (2x2 block)
+            </span>
+        </div>
+    </main>
+
+    <div class="stats-panel">
+        <div id="statsText" class="stat-text"></div>
+    </div>
+
+    <div id="resultsContainer" class="results-container">
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
